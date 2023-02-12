@@ -32,6 +32,8 @@ export default {
       this.tasks.push({ id: this.message, name: this.message, done: false });
       this.message = '';
     },
+  },
+  computed: {
     completed() {
       return this.tasks.filter(task => task.done);
     },
@@ -41,9 +43,6 @@ export default {
     count() {
             return this.tasks.filter(task => !task.done).length;
         },
-  },
-  computed: {
-
   }
 }
 </script>
@@ -52,13 +51,13 @@ export default {
   <div class="wrapper" :class="{ main: true }">
     <h1>Список дел</h1>
     <div>
-      <h3 :class="{bot1: true}">Осталось дел: {{ count() }}</h3>
-      <Task :tasks="unCompleted()" />
+      <h3 :class="{bot1: true}">Осталось дел: {{ count }}</h3>
+      <Task :tasks="unCompleted" />
     </div>
     <input v-model="message" @keyup.enter="add">
     <button @click="add" :class="{bot:true}">Добавить</button>
     <h3 :class="{bot1: true}">Выполненные дела:</h3>
-    <Task :tasks="completed()" />
+    <Task :tasks="completed" />
   </div>
 </template>
 
